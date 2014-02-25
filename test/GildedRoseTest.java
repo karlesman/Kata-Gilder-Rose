@@ -7,6 +7,7 @@ public class GildedRoseTest {
     private static final int NORMAL_DEGRADING_FACTOR = 1;
     private static final int EXPIRED_DEGRADING_FACTOR = 2;
     private static final int AGED_BRIE_AGING_FACTOR = 1;
+    private static final int AGED_BRIE_EXPIRED_AGING_FACTOR = 2;
 	private static final String ANY_ITEM = "Any Item";
 	private static final String AGED_BRIE = "Aged Brie";
 	private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
@@ -57,6 +58,22 @@ public class GildedRoseTest {
 		Integer expectedQuality=anyQuality+AGED_BRIE_AGING_FACTOR;
 		
         Item[] items = new Item[] { new Item(AGED_BRIE, anySellIn, anyQuality) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        
+        assertEquals(expectedQuality, app.items[0].quality);
+    }
+    @Test
+    /*
+     * This rule was not in the requeriment. Is it a bug or a hidden requeriment?
+     * TALK TO PRODUCT OWNER ABOUT THIS
+     */
+    public void agedBrieIncreaseTwiceInQualityWhenExpired() {
+		Integer negativeSellIn=-2;
+		Integer anyQuality=5;
+		Integer expectedQuality=anyQuality+AGED_BRIE_EXPIRED_AGING_FACTOR;
+		
+        Item[] items = new Item[] { new Item(AGED_BRIE, negativeSellIn, anyQuality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         

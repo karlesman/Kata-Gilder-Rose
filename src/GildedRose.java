@@ -16,6 +16,14 @@ class GildedRose {
 		if (items[i].name.equals("Sulfuras, Hand of Ragnaros"))
 			return;
 
+		decreaseSellIn(i);
+
+		if (items[i].name.equals("Aged Brie")){
+			updateAgedBrie(i);
+			return;
+		}
+		
+		
 		if (!items[i].name.equals("Aged Brie")
 				&& !items[i].name
 						.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -25,18 +33,18 @@ class GildedRose {
 
 			if (items[i].name
 					.equals("Backstage passes to a TAFKAL80ETC concert")) {
-				if (items[i].sellIn < 11) {
+				if (items[i].sellIn < 10) {
 					increaseItemQuality(i);
 				}
 
-				if (items[i].sellIn < 6) {
+				if (items[i].sellIn < 5) {
 					increaseItemQuality(i);
 				}
 			}
 
 		}
 
-		items[i].sellIn = items[i].sellIn - 1;
+
 
 		if (items[i].sellIn < 0) {
 			if (!items[i].name.equals("Aged Brie")) {
@@ -55,15 +63,24 @@ class GildedRose {
 		}
 	}
 
+	private void updateAgedBrie(int i) {
+		increaseItemQuality(i);
+		if (items[i].sellIn < 0) {
+			increaseItemQuality(i);
+		}
+	}
+	
+	private void decreaseSellIn(int i) {
+		items[i].sellIn = items[i].sellIn - 1;
+	}
+
 	private void decreaseItemQuality(int i) {
-		if (items[i].quality <= 0)
-			return;
+		if (items[i].quality <= 0) return;
 		items[i].quality = items[i].quality - 1;
 	}
 
 	private void increaseItemQuality(int i) {
-		if (items[i].quality >= 50)
-			return;
+		if (items[i].quality >= 50)	return;
 		items[i].quality = items[i].quality + 1;
 	}
 }
