@@ -1,5 +1,10 @@
 class GildedRose {
+	private static final int BACKSTAGE_INMINETDAY_FACTOR = 3;
+	private static final int BACKSTAGE_CLOSEDATE_FACTOR = 2;
+	private static final int BACKSTAGE_NORMAL_FACTOR = 1;
 	Item[] items;
+	public static final int AGED_BRIE_EXPIRED_AGING_FACTOR = 2;
+	public static final int AGED_BRIE_AGING_FACTOR = 1;
 	static final int EXPIRED_DEGRADING_FACTOR = 2;
 	static final int NORMAL_DEGRADING_FACTOR = 1;
 	static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
@@ -26,15 +31,12 @@ class GildedRose {
 
 		if (item.name.equals(AGED_BRIE)){
 			updateAgedBrie(item);
-			return;
 		}
 		
-		if (item.name.equals(BACKSTAGE_PASSES)){
+		else if (item.name.equals(BACKSTAGE_PASSES)){
 			updateBackStagePasses(item);
-			return;
-		}		
-
-		updateNormalItem(item);
+		}	
+		else updateNormalItem(item);
 	}
 
 	private void updateNormalItem(Item item) {
@@ -44,24 +46,23 @@ class GildedRose {
 		else decreaseItemQuality(item,NORMAL_DEGRADING_FACTOR);
 	}
 
-	private void updateAgedBrie(Item item) {
-		increaseItemQuality(item);
+	private void updateAgedBrie(Item item) {	
 		if (itemHasExpired(item)) {
-			increaseItemQuality(item);
+			increaseItemQuality(item,AGED_BRIE_EXPIRED_AGING_FACTOR);
 		}
+		else increaseItemQuality(item,AGED_BRIE_AGING_FACTOR);
 	}
 	private void updateBackStagePasses(Item item) {
-		increaseItemQuality(item);
-		if (item.sellIn < 10) {
-			increaseItemQuality(item);
-		}
-		if (item.sellIn < 5) {
-			increaseItemQuality(item);
-		}
 		if (itemHasExpired(item)) {
 			item.quality = 0;
 		}
-		
+		else if (item.sellIn < 5) {
+			increaseItemQuality(item,BACKSTAGE_INMINETDAY_FACTOR);
+		}
+		else if (item.sellIn < 10) {
+			increaseItemQuality(item,BACKSTAGE_CLOSEDATE_FACTOR);
+		}
+		else increaseItemQuality(item,BACKSTAGE_NORMAL_FACTOR);
 	}
 
 	private boolean itemHasExpired(Item item) {
@@ -72,13 +73,13 @@ class GildedRose {
 		item.sellIn = item.sellIn - 1;
 	}
 
-	private void decreaseItemQuality(Item item,Integer Factor) {
+	private void decreaseItemQuality(Item item,Integer factor) {
 		if (item.quality <= 0) return;
-		item.quality = item.quality - Factor;
+		item.quality = item.quality -factor;
 	}
 
-	private void increaseItemQuality(Item item) {
+	private void increaseItemQuality(Item item,Integer factor) {
 		if (item.quality >= QUALITY_UPPER_LIMIT)	return;
-		item.quality = item.quality + 1;
+		item.quality = item.quality + factor;
 	}
 }

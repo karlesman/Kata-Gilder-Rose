@@ -3,10 +3,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GildedRoseTest {
-    private static final int AGED_BRIE_AGING_FACTOR = 1;
-    private static final int AGED_BRIE_EXPIRED_AGING_FACTOR = 2;
-    
-	@Test
+    @Test
     public void eachDayQualityAndSellInDecreases() {
 		Integer anySellIn=8;
 		Integer anyQuality=6;
@@ -48,7 +45,7 @@ public class GildedRoseTest {
     public void agedBrieIncreaseInQuality() {
 		Integer anySellIn=8;
 		Integer anyQuality=5;
-		Integer expectedQuality=anyQuality+AGED_BRIE_AGING_FACTOR;
+		Integer expectedQuality=anyQuality+GildedRose.AGED_BRIE_AGING_FACTOR;
 		
         Item[] items = new Item[] { new Item(GildedRose.AGED_BRIE, anySellIn, anyQuality) };
         GildedRose app = new GildedRose(items);
@@ -64,7 +61,7 @@ public class GildedRoseTest {
     public void agedBrieIncreaseTwiceInQualityWhenExpired() {
 		Integer negativeSellIn=-2;
 		Integer anyQuality=5;
-		Integer expectedQuality=anyQuality+AGED_BRIE_EXPIRED_AGING_FACTOR;
+		Integer expectedQuality=anyQuality+GildedRose.AGED_BRIE_EXPIRED_AGING_FACTOR;
 		
         Item[] items = new Item[] { new Item(GildedRose.AGED_BRIE, negativeSellIn, anyQuality) };
         GildedRose app = new GildedRose(items);
