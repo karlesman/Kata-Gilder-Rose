@@ -16,56 +16,56 @@ class GildedRose {
 		if (items[i].name.equals("Sulfuras, Hand of Ragnaros"))
 			return;
 
-		decreaseSellIn(i);
+		decreaseSellInItem(items[i]);
 
 		if (items[i].name.equals("Aged Brie")){
-			updateAgedBrie(i);
+			updateAgedBrie(items[i]);
 			return;
 		}
 		
 		if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")){
-			updateBackStagePasses(i);
+			updateBackStagePasses(items[i]);
 			return;
 		}		
 
-		decreaseItemQuality(i);
+		decreaseItemQuality(items[i]);
 
 		if (items[i].sellIn < 0) {
-			decreaseItemQuality(i);
+			decreaseItemQuality(items[i]);
 		}
 	}
 
-	private void updateAgedBrie(int i) {
-		increaseItemQuality(i);
-		if (items[i].sellIn < 0) {
-			increaseItemQuality(i);
+	private void updateAgedBrie(Item item) {
+		increaseItemQuality(item);
+		if (item.sellIn < 0) {
+			increaseItemQuality(item);
 		}
 	}
-	private void updateBackStagePasses(int i) {
-		increaseItemQuality(i);
-		if (items[i].sellIn < 10) {
-			increaseItemQuality(i);
+	private void updateBackStagePasses(Item item) {
+		increaseItemQuality(item);
+		if (item.sellIn < 10) {
+			increaseItemQuality(item);
 		}
-		if (items[i].sellIn < 5) {
-			increaseItemQuality(i);
+		if (item.sellIn < 5) {
+			increaseItemQuality(item);
 		}
-		if (items[i].sellIn < 0) {
-			items[i].quality = 0;
+		if (item.sellIn < 0) {
+			item.quality = 0;
 		}
 		
 	}
 	
-	private void decreaseSellIn(int i) {
-		items[i].sellIn = items[i].sellIn - 1;
+	private void decreaseSellInItem(Item item) {
+		item.sellIn = item.sellIn - 1;
 	}
 
-	private void decreaseItemQuality(int i) {
-		if (items[i].quality <= 0) return;
-		items[i].quality = items[i].quality - 1;
+	private void decreaseItemQuality(Item item) {
+		if (item.quality <= 0) return;
+		item.quality = item.quality - 1;
 	}
 
-	private void increaseItemQuality(int i) {
-		if (items[i].quality >= 50)	return;
-		items[i].quality = items[i].quality + 1;
+	private void increaseItemQuality(Item item) {
+		if (item.quality >= 50)	return;
+		item.quality = item.quality + 1;
 	}
 }
