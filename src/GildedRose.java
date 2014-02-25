@@ -7,31 +7,31 @@ class GildedRose {
 
 	public void updateQuality() {
 		for (int i = 0; i < items.length; i++) {
-			updateItem(i);
+			updateItem(items[i]);
 		}
 	}
 
-	private void updateItem(int i) {
+	private void updateItem(Item item) {
 
-		if (items[i].name.equals("Sulfuras, Hand of Ragnaros"))
+		if (item.name.equals("Sulfuras, Hand of Ragnaros"))
 			return;
 
-		decreaseSellInItem(items[i]);
+		decreaseSellInItem(item);
 
-		if (items[i].name.equals("Aged Brie")){
-			updateAgedBrie(items[i]);
+		if (item.name.equals("Aged Brie")){
+			updateAgedBrie(item);
 			return;
 		}
 		
-		if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")){
-			updateBackStagePasses(items[i]);
+		if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
+			updateBackStagePasses(item);
 			return;
 		}		
 
-		decreaseItemQuality(items[i]);
+		decreaseItemQuality(item);
 
-		if (items[i].sellIn < 0) {
-			decreaseItemQuality(items[i]);
+		if (item.sellIn < 0) {
+			decreaseItemQuality(item);
 		}
 	}
 
