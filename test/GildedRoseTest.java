@@ -73,11 +73,11 @@ public class GildedRoseTest {
     public void qualityHasAnUpperLimit() {
 		Integer anySellIn=5;
 		
-        Item[] items = new Item[] { new Item(GildedRose.AGED_BRIE, anySellIn, GildedRose.QUALITY_UPPER_LIMIT) };
+        Item[] items = new Item[] { new Item(GildedRose.AGED_BRIE, anySellIn, ItemContainer.QUALITY_UPPER_LIMIT) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         
-        assertEquals(GildedRose.QUALITY_UPPER_LIMIT, app.items[0].quality);
+        assertEquals(ItemContainer.QUALITY_UPPER_LIMIT, app.items[0].quality);
     }
     @Test
     public void sulfurasIsLegendary() {

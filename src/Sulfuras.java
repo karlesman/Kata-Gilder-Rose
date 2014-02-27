@@ -1,7 +1,7 @@
 
 public class Sulfuras implements StockItem {
 
-	public void update(GildedRose gildedRose, Item item) {
+	public void update(ItemContainer item) {
 	}
 
 }

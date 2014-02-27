@@ -8,7 +8,6 @@ class GildedRose {
 	static final String AGED_BRIE = "Aged Brie";
 	static final String ANY_ITEM = "Any Item";
 	
-	public static final int QUALITY_UPPER_LIMIT = 50;
 	Map<String,StockItem> ItemTypes = new HashMap<String,StockItem>();
 
 	public GildedRose(Item[] items) {
@@ -30,24 +29,9 @@ class GildedRose {
 			  itemType=new NormalItem(); 
 		  }
 
-		itemType.update(this,item);
+		ItemContainer itemContainer=new ItemContainer(item);
+		itemType.update(itemContainer);
 	}
 
-	boolean itemHasExpired(Item item) {
-		return item.sellIn < 0;
-	}
 	
-	void decreaseSellInItem(Item item) {
-		item.sellIn = item.sellIn - 1;
-	}
-
-	void decreaseItemQuality(Item item,Integer factor) {
-		if (item.quality <= 0) return;
-		item.quality = item.quality -factor;
-	}
-
-	void increaseItemQuality(Item item,Integer factor) {
-		if (item.quality >= QUALITY_UPPER_LIMIT)	return;
-		item.quality = item.quality + factor;
-	}
 }
