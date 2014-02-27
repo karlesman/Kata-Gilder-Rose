@@ -55,7 +55,7 @@ public class GildedRoseTest {
     }
     @Test
     /*
-     * This rule was not in the requeriment. Is it a bug or a hidden requeriment?
+     * This rule was not in the requirement. Is it a bug or a hidden requirement?
      * TALK TO PRODUCT OWNER ABOUT THIS
      */
     public void agedBrieIncreaseTwiceInQualityWhenExpired() {

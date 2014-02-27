@@ -1,11 +1,3 @@
 /.classpath
 /.project
-/bin/GildedRose.class
-/bin/GildedRoseTest.class
-/bin/Item.class
-/bin/TexttestFixture.class
-
-/bin/AgedBried.class
-/bin/BackStage.class
-/bin/NormalItem.class
-/bin/StockItem.class
+/bin/*.class

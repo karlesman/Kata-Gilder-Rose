@@ -6,6 +6,7 @@ public class NormalItem  implements StockItem{
 
 	
 	public  void update(GildedRose gildedRose, Item item) {
+		gildedRose.decreaseSellInItem(item);
 		if (gildedRose.itemHasExpired(item)) {
 			gildedRose.decreaseItemQuality(item,EXPIRED_DEGRADING_FACTOR);
 		}

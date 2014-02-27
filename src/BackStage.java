@@ -9,6 +9,7 @@ public class BackStage  implements StockItem{
 	private static final int BACKSTAGE_INMINETDAY_FACTOR = 3;
 	
 	public void update(GildedRose gildedRose, Item item) {
+		gildedRose.decreaseSellInItem(item);
 		if (gildedRose.itemHasExpired(item)) {
 			item.quality = 0;
 		}

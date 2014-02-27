@@ -15,7 +15,7 @@ class GildedRose {
 		this.items = items;
 		ItemTypes.put(BACKSTAGE_PASSES,new BackStage());
 		ItemTypes.put(AGED_BRIE,new AgedBried());
-	//	ItemTypes.put(BACKSTAGE_PASSES,new BackStage());
+		ItemTypes.put(SULFURAS_HAND_OF_RAGNAROS,new Sulfuras());
 	}
 
 	public void updateQuality() {
@@ -24,25 +24,20 @@ class GildedRose {
 		}
 	}
 
-	private void updateItem(Item item) {
-		if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS))
-			return;
-		decreaseSellInItem(item);
-		
+	private void updateItem(Item item) {		
 		StockItem itemType = ItemTypes.get(item.name);
 		if (itemType == null) {
 			  itemType=new NormalItem(); 
 		  }
 
 		itemType.update(this,item);
-
 	}
 
 	boolean itemHasExpired(Item item) {
 		return item.sellIn < 0;
 	}
 	
-	private void decreaseSellInItem(Item item) {
+	void decreaseSellInItem(Item item) {
 		item.sellIn = item.sellIn - 1;
 	}
 

@@ -6,6 +6,7 @@ public class AgedBried implements StockItem {
 	
 	
 	public void update(GildedRose gildedRose, Item item) {
+		gildedRose.decreaseSellInItem(item);
 		if (gildedRose.itemHasExpired(item)) {
 			gildedRose.increaseItemQuality(item,AgedBried.AGED_BRIE_EXPIRED_AGING_FACTOR);
 		}
